@@ -23,7 +23,7 @@ const NmeaConverter: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
   
-  // Process NMEA input when it changes
+
   useEffect(() => {
     if (nmeaInput.trim()) {
       try {
@@ -50,7 +50,6 @@ const NmeaConverter: React.FC = () => {
     }
   }, [nmeaInput]);
 
-  // Add valid coordinates to history
   useEffect(() => {
     if (coordinates && 
         coordinates.latitude && 

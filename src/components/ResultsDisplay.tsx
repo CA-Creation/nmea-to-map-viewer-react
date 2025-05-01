@@ -72,7 +72,6 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({ coordinates }) => {
         </div>
       </div>
       
-      {/* Additional information if available */}
       <div className="grid grid-cols-2 gap-4 mt-4">
         {coordinates.timestamp && (
           <div className="bg-white/5 rounded-lg p-3">

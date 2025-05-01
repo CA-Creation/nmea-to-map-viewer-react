@@ -1,34 +1,29 @@
 import { Coordinates } from '../components/NmeaConverter';
 
-/**
- * Parses NMEA sentences to extract GPS coordinates
- */
+
 export function parseNMEA(nmea: string): Coordinates | null {
-  // Remove any whitespace and check if valid
+
   const nmeaString = nmea.trim();
   if (!nmeaString || !nmeaString.startsWith('$')) {
     return null;
   }
   
-  // Get the sentence type
+
   const sentenceType = nmeaString.substring(1, 6);
-  
-  // Handle different NMEA sentence types
+
   if (sentenceType === 'GPGGA') {
     return parseGPGGA(nmeaString);
   } else if (sentenceType === 'GPRMC') {
     return parseGPRMC(nmeaString);
   }
   
-  // Try a more generic approach if specific parsing fails
+
   return parseGenericNMEA(nmeaString);
 }
 
-/**
- * Parses GPGGA sentences (Global Positioning System Fix Data)
- */
+
 function parseGPGGA(nmea: string): Coordinates | null {
-  // $GPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,46.9,M,,*47
+
   const parts = nmea.split(',');
   if (parts.length < 10) return null;
   
@@ -83,9 +78,7 @@ function parseGPGGA(nmea: string): Coordinates | null {
   }
 }
 
-/**
- * Parses GPRMC sentences (Recommended Minimum Specific GPS/Transit Data)
- */
+
 function parseGPRMC(nmea: string): Coordinates | null {
   // $GPRMC,123519,A,4807.038,N,01131.000,E,022.4,084.4,230394,003.1,W*6A
   const parts = nmea.split(',');
@@ -143,9 +136,7 @@ function parseGPRMC(nmea: string): Coordinates | null {
   }
 }
 
-/**
- * Generic NMEA parser for when specific parsers fail
- */
+
 function parseGenericNMEA(nmea: string): Coordinates | null {
   const parts = nmea.split(',');
   if (parts.length < 6) return null;

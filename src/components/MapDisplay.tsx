@@ -4,11 +4,11 @@ import 'leaflet/dist/leaflet.css';
 import { Coordinates } from './NmeaConverter';
 import L from 'leaflet';
 
-// Fix for Leaflet marker icon in React
+
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
-// Fix Leaflet default icon issue
+
 let DefaultIcon = L.icon({
   iconUrl: icon,
   shadowUrl: iconShadow,
@@ -37,7 +37,7 @@ const MapUpdater: React.FC<{ coordinates: Coordinates | null }> = ({ coordinates
 };
 
 const MapDisplay: React.FC<MapDisplayProps> = ({ coordinates, history }) => {
-  // Default location (center of US) if no coordinates
+  // Default location
   const defaultPosition: [number, number] = [39.8283, -98.5795];
   const [position, setPosition] = useState<[number, number]>(defaultPosition);
   
